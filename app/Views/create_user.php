@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <title>Create User</title>
-</head>
-<body>
+<?= $this->extend('layouts/app') ?>
+
+<?= $this->section('content') ?>
+
     <center>
     <p>Ini Halaman Create User</p>
     <?php $validation = \Config\Services::validation();?>
@@ -20,7 +15,7 @@
         <br>
         
         <label for="">NPM  : </label>
-        <input class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" type="text" placeholder="Default input" aria-label="default input example" type="text" name="npm" id="" style="width: 20%" value="<?= old('nama') ?>">
+        <input class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" type="text" placeholder="Default input" aria-label="default input example" ty///pe="text" name="npm" id="" style="width: 20%" value="<?= old('nama') ?>">
         <?= validation_show_error('npm'); ?>
         <br>
         <br>
@@ -45,5 +40,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </center>
-</body>
-</html>
+    <?= $this->endsection() ?>

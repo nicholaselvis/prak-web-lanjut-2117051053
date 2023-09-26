@@ -4,12 +4,29 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\KelasModel;
+use CodeIgniter\Commands\Utilities\Publish;
 class UserController extends BaseController
 {
+    public $userModel;
+    public $kelasModel;
+
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->kelasModel = new KelasModel();
+    }
+
     protected $helpers=['Form'];
+
     public function index()
     {
-        //
+        $data = [
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+
+        return view('list_user', $data);
     }
 
     public function profile($nama = "", $kelas = "", $npm = "")
@@ -24,24 +41,7 @@ class UserController extends BaseController
 
     public function create()
     {
-        $kelas = [
-            [
-                'id'            => 1,//sesuaikan dengan id kelas pada database
-                'nama_kelas'    =>'A',
-            ],
-            [
-                'id'            => 2,//sesuaikan dengan id kelas pada database
-                'nama_kelas'    =>'B',
-            ],
-            [
-                'id'            => 3,//sesuaikan dengan id kelas pada database
-                'nama_kelas'    =>'C',
-            ],
-            [
-                'id'            => 4,//sesuaikan dengan id kelas pada database
-                'nama_kelas'    =>'D',
-            ],
-        ];
+        $kelas = $this->kelasModel->getKelas();
 
         $data =[
             'kelas' => $kelas,
@@ -52,7 +52,6 @@ class UserController extends BaseController
 
     public function store()
     {
-        $userModel = new UserModel();
 
         if(!$this->validate([
             'nama' => [
@@ -73,7 +72,7 @@ class UserController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $userModel->saveUser([
+        $this ->userModel->saveUser([
             'nama'      => $this->request->getVar('nama'),
             'id_kelas'  => $this->request->getVar('kelas'),
             'npm'       => $this->request->getVar('npm'),
@@ -85,6 +84,6 @@ class UserController extends BaseController
             'kelas' => $this->request->getVar('kelas'),
         ];
 
-        return view('profile', $data);
+        return redirect()->to('/user');
     }
 }
