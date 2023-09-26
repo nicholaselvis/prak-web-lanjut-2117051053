@@ -9,8 +9,14 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
 
-    public function saveUser($data){
+    public function saveUser($data)
+    {
         $this->insert($data);
+    }
+
+    public function getUser()
+    {
+        return $this->join('kelas', 'kelas.id=user.id_kelas')->findAll();
     }
 
     protected $DBGroup          = 'default';
