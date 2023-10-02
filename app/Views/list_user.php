@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/app') ?>
 
 <?= $this->section('content') ?>
+<?php $id = 1; ?>
 
     <table class="table table-hover table-striped">
         <thead class="table-dark">
@@ -17,7 +18,7 @@
             foreach ($users as $user){
             ?>
             <tr>
-                <td><?= $user['id']?></td>
+                <td><?php echo $id++ ?></td>
                 <td><?= $user['nama']?></td>
                 <td><?= $user['npm']?></td>
                 <td><?= $user['nama_kelas']?></td>
