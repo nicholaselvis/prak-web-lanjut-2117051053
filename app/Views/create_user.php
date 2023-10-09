@@ -6,16 +6,20 @@
     <p>Ini Halaman Create User</p>
     <?php $validation = \Config\Services::validation();?>
 
-    <form action="<?= base_url('/user/store')?>" method="POST">
+    <form action="<?= base_url('/user/store')?>" method="POST" enctype="multipart/form-data">
+
+        <label for="">foto</label>
+        <input class="form-control" name="foto" type="file" id="formFile" style="width: 20%">
+        <br>
+
         <label for="">Nama : </label>
-        
         <input class="form-control <?= (empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" type="text" placeholder="Default input" aria-label="default input example" type="text" name="nama" id="" style="width: 20%" value="<?= old('nama') ?>">
         <?= validation_show_error('nama'); ?>
         <br>
         <br>
         
         <label for="">NPM  : </label>
-        <input class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" type="text" placeholder="Default input" aria-label="default input example" ty///pe="text" name="npm" id="" style="width: 20%" value="<?= old('nama') ?>">
+        <input class="form-control <?= (empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" type="text" placeholder="Default input" aria-label="default input example" type="text" name="npm" id="" style="width: 20%" value="<?= old('nama') ?>">
         <?= validation_show_error('npm'); ?>
         <br>
         <br>
