@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
     <center>
-    <p>Ini Halaman Create User</p>
+    <div class="text-cantik">Tambah Mahasiswa</div>
     <?php $validation = \Config\Services::validation();?>
 
     <form action="<?= base_url('/user/' . $user['id'])?>" method="POST" enctype="multipart/form-data">
